@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.team7.harrypotter.mapper.StudentMapper">
+
+    <insert id="insertStudent" parameterType="StudentDTO">
+        INSERT INTO student (name, grade, gender, house_id)
+        VALUES (#{name}, #{grade}, #{gender}, #{houseId})
+    </insert>
+
+    <select id="selectAllStudents" resultType="StudentDTO">
+        SELECT *
+        FROM student
+        ORDER BY id ASC
+    </select>
+
+    <select id="selectStudentById" parameterType="int" resultType="StudentDTO">
+        SELECT *
+        FROM student
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateStudent" parameterType="StudentDTO">
+        UPDATE student
+        SET name     = #{name},
+            grade    = #{grade},
+            gender   = #{gender},
+            house_id = #{houseId}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteStudent" parameterType="int">
+        DELETE
+        FROM student
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectStudentsByHouseId" parameterType="int" resultType="StudentDTO">
+        SELECT *
+        FROM student
+        WHERE house_id = #{houseId}
+    </select>
+
+</mapper>
