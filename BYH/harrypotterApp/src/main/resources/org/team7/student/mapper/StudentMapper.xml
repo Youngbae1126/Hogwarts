@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team7.student.mapper.StudentMapper">
+
+    <!-- 전체 학생 리스트 가져오기-->
+    <select id="getAllStd" resultType="StudentVO">
+        <!-- 복잡한 쿼리나 XML 특수문자가 포함될 때 파싱  -->
+        <![CDATA[
+        select *
+        from student
+        order by id desc
+        ]]>
+    </select>
+
+    <!-- 아이디로 특정 학생 조회 -->
+    <select id="getStd" parameterType="int" resultType="StudentVO">
+        select *
+        from student
+        where id = #{id}
+    </select>
+
+    <!-- 학생 정보 추가 -->
+    <insert id="addStd">
+        insert into student (name, grade, gender, house_id)
+        values (#{name}, #{grade}, #{gender}, #{houseId})
+        # PK값을 얻기 위해서 사용, keyProperty를 통해 StudentVO의 id값으로 세팅
+        <selectKey resultType="int" keyProperty="id" keyColumn="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- 학생 정보 수정 -->
+    <update id="updStd">
+        update student
+        set name = #{name}, grade = #{grade}, gender = #{gender}, house_id = #{houseId}
+        where id = #{id}
+    </update>
+
+    <!-- 학생 정보 삭제 -->
+    <delete id="delStd">
+        delete from student where id = #{id}
+    </delete>
+</mapper>
