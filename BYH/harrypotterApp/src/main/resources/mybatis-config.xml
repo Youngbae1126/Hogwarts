@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- VO 객체의 프로퍼티명과 테이블 컬럼명을 맞춰주기 위함   -->
+    <!-- mapUnderscoreToCamelCase 속성과 BoardVO에 대한 타입 앨리어스 속성 설정 -->
+    <!-- 언더바로 작성된 이름을 자동으로 낙타 표기법으로 바꾸어주는 속성 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <!-- SQL 쓰는 xml파일(mapper 파일)에 클래스 타입을 써줄 때, '패키지.패키지.패키지.클래스명'으로 쓰게 된다.
+         패키지를 mapper 파일에서 안 쓰고 싶을 때, config 파일에서 기본 패키지로 설정하면 된다.
+         => mapper 파일에는 클래스명만 작성해주면 된다. -->
+    <typeAliases>
+        <package name="org.team7.student.domain" />
+        <package name="org.team7.house.domain" />
+    </typeAliases>
+</configuration>

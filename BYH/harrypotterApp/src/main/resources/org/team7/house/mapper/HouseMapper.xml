@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team7.house.mapper.HouseMapper">
+
+    <!--  전체 기숙사 리스트 조회   -->
+    <select id="getAllHome" resultType="HouseVO">
+        <![CDATA[
+        select *
+        from house
+        order by house_id
+        ]]>
+        </select>
+
+    <!--  기숙사별 소속 학생 리스트 조회   -->
+    <select id="getHome" parameterType="int" resultType="StudentVO">
+        select *
+        from student
+        where house_id = #{houseId}
+    </select>
+
+</mapper>
